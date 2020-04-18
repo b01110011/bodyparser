@@ -35,7 +35,8 @@ module.exports = function (Validator) {
    * Ensure field is a valid File object
    */
   Validator.extend('file', async function (data, field, message, args, get) {
-    if (get(data, field) instanceof File === false) {
+    const dataField = get(data, field)
+    if (dataField && dataField instanceof File === false) {
       throw message
     }
   })

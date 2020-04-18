@@ -38,7 +38,10 @@ test.group('Validator', (group) => {
       return new Validator()
     })
 
-    const { body } = await supertest(URL).post('/')
+    const { body } = await supertest(URL)
+      .post('/')
+      .field('avatar', 'not file')
+
     assert.deepEqual(body, [{
       message: 'file validation failed on avatar',
       field: 'avatar',
